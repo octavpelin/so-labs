@@ -12,8 +12,12 @@
 #include "add.h"
 #include "mul.h"
 
+#ifdef HAVE_MATH
+#include <math.h>
+#endif
+
 #define A_NUMBER	2
-#define B_NUMBER	A_NUMBER + 8
+#define B_NUMBER	(A_NUMBER + 8)
 
 int main(void)
 {

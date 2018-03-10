@@ -6,10 +6,11 @@ LDFLAGS = -L.
 all: main_static
 
 
-main_static:
-
-libhexdump_static.a:
-
+main_static: main.o libhexdump_static.a
+	$(CC) $(CFLAGS) -o $@ $< -lhexdump_static $(LDFLAGS)
+	
+libhexdump_static.a: hexdump.o sample.o
+	ar rc $@ $?
 
 main.o: main.c
 hexdump.o: hexdump.c

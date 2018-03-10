@@ -1,3 +1,5 @@
+#include "mul.h"
+
 /**
  * SO, 2016
  * Lab #1, Introduction
