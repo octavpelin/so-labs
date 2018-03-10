@@ -10,17 +10,17 @@
 ```
 # Linux GCC: Optiuni utile:
 ```
-    -Lcale – instruiește compilatorul să caute și în directorul cale bibliotecile pe care le folosește programul; opțiunea se poate specifica de mai multe ori, pentru a adãuga mai multe directoare
-    -lbiblioteca – instruiește compilatorul cã programul are nevoie de biblioteca biblioteca. Fișierul ce conține biblioteca trebuie să se numească libbiblioteca.so sau libbiblioteca.a.
-    -Icale – instruiește compilatorul sã caute fișierele antet (headere) și în directorul cale; opțiunea se poate specifica de mai multe ori, pentru a adãuga mai multe directoare
-    -Onivel-optimizări, instuiește compilatorul ce nivel de optimizare trebuie aplicat:
-        -O0, va determina compilatorul sã nu optimizeze codul generat;
-        -O3, va determina compilatorul sã optimizeze la maxim codul generat;
-        -O2, este pragul de unde compilatorul va începe sã insereze direct în cod functiile inline în loc sã le apeleze;
-        -Os, va pune accentul pe optimizările care duc la reducerea dimensiunii codului generat, și nu a vitezei la execuție.
-    -g, dacã se folosește această opțiune compilatorul va genera în fișierele de ieșire informații care pot fi apoi folosite de un debugger (informații despre fișierele sursã și o mapare între codul mașinã și liniile de cod ale fișierelor sursã)
+    -Lcale â instruieÈte compilatorul sÄ caute Èi Ã®n directorul cale bibliotecile pe care le foloseÈte programul; opÈiunea se poate specifica de mai multe ori, pentru a adÃ£uga mai multe directoare
+    -lbiblioteca â instruieÈte compilatorul cÃ£ programul are nevoie de biblioteca biblioteca. FiÈierul ce conÈine biblioteca trebuie sÄ se numeascÄ libbiblioteca.so sau libbiblioteca.a.
+    -Icale â instruieÈte compilatorul sÃ£ caute fiÈierele antet (headere) Èi Ã®n directorul cale; opÈiunea se poate specifica de mai multe ori, pentru a adÃ£uga mai multe directoare
+    -Onivel-optimizÄri, instuieÈte compilatorul ce nivel de optimizare trebuie aplicat:
+        -O0, va determina compilatorul sÃ£ nu optimizeze codul generat;
+        -O3, va determina compilatorul sÃ£ optimizeze la maxim codul generat;
+        -O2, este pragul de unde compilatorul va Ã®ncepe sÃ£ insereze direct Ã®n cod functiile inline Ã®n loc sÃ£ le apeleze;
+        -Os, va pune accentul pe optimizÄrile care duc la reducerea dimensiunii codului generat, Èi nu a vitezei la execuÈie.
+    -g, dacÃ£ se foloseÈte aceastÄ opÈiune compilatorul va genera Ã®n fiÈierele de ieÈire informaÈii care pot fi apoi folosite de un debugger (informaÈii despre fiÈierele sursÃ£ Èi o mapare Ã®ntre codul maÈinÃ£ Èi liniile de cod ale fiÈierelor sursÃ£)
 
-Paginile de ajutor ale GCC (man gcc, info gcc) oferă o listă cu toate opțiunile posibile ale GCC.
+Paginile de ajutor ale GCC (man gcc, info gcc) oferÄ o listÄ cu toate opÈiunile posibile ale GCC.
 ```
 # Linux: Crearea unei biblioteci statice:
 Primul pas:
@@ -75,24 +75,24 @@ link /?	/* list of options */
 ```
 # Optiuni:
 
-* /Wall - activeaz? toate warning-urile
-* /LIBPATH:<dir> - aceast? op?iune indic? linker-ului s? caute ?i �n directorul dir bibliotecile pe care trebuie s? le foloseasc? programul; op?iunea se folose?te dup? /link
-* /I<dir> - caut? ?i �n acest director fi?ierele incluse prin directiva include
-* /c - se va face numai compilarea, adic? se va omite etapa de link-editare.
+* /Wall - activează toate warning-urile
+* /LIBPATH:<dir> - această opţiune indică linker-ului să caute şi în directorul dir bibliotecile pe care trebuie să le folosească programul; opţiunea se foloseşte după /link
+* /I<dir> - caută şi în acest director fişierele incluse prin directiva include
+* /c - se va face numai compilarea, adică se va omite etapa de link-editare.
 * /D<define_symbol> - definirea unui macro de la compilare
 
-# Op?iuni privind optimizarea codului:
+# Opţiuni privind optimizarea codului:
 
-*    /O1 minimizeaz? spa?iul ocupat
-*    /O2 maximizeaz? viteza
-*    /Os favorizeaz? spa?iul ocupat
-*    /Ot favorizeaz? viteza
-*    /Od f?r? optimiz?ri (implicit)
-*    /Og activeaz? optimiz?rile globale
+*    /O1 minimizează spaţiul ocupat
+*    /O2 maximizează viteza
+*    /Os favorizează spa?iul ocupat
+*    /Ot favorizează viteza
+*    /Od fără optimizări (implicit)
+*    /Og activează optimizările globale
 
-#  Setarea numelui pentru diferite fi?iere de ie?ire:
+#  Setarea numelui pentru diferite fişiere de ieşire:
 
-*    /Fo<file> nume fi?ier obiect
-*    /Fa<file> nume fi?ier �n cod de asamblare
-*    /Fp<file> nume fi?ier header precompilat
-*    /Fe<file> nume fi?ier executabil
+*    /Fo<file> nume fişier obiect
+*    /Fa<file> nume fişier în cod de asamblare
+*    /Fp<file> nume fişier header precompilat
+*    /Fe<file> nume fişier executabil
