@@ -207,3 +207,10 @@ Alternativ, biblioteca poate fi obtinuta cu ajutorul comenzii link:
 Current file name is f1.c
 Current line 6 in file f2.c
 ```
+
+# Nmake
+## Macro-uri:
+* $@ - numele tintei curente
+* $* - numele tintei curente, mai putin extensia
+* $** - toate dependentele unei tinte
+* $? - toate dependentele mai vechi decat tinta
