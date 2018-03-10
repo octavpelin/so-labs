@@ -96,3 +96,114 @@ link /?	/* list of options */
 *    /Fa<file> nume fişier în cod de asamblare
 *    /Fp<file> nume fişier header precompilat
 *    /Fe<file> nume fişier executabil
+
+## Biblioteci in Windows:
+# Windows: Crearea unei biblioteci statice
+```
+>lib /out:<nume.lib> <lista fișiere obiecte>
+```
+Exemplu:
+```
+# obținem fișierul obiect f1.obj din sursa f1.c
+>cl /c f1.c
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 14.00.50727.42 for 80x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+ 
+f1.c
+ 
+#obținem fișierul f2.obj din sursa f2.c
+>cl /c f2.c
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 14.00.50727.42 for 80x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+ 
+f2.c
+ 
+>cl /c main.c
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 14.00.50727.42 for 80x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+ 
+main.c
+ 
+#obținem biblioteca statică intro.lib din f1.obj și f2.obj
+>lib /out:intro.lib f1.obj f2.obj
+Microsoft (R) Library Manager Version 8.00.50727.42
+Copyright (C) Microsoft Corporation.  All rights reserved.
+ 
+#intro.lib este compilat împreună cu main.obj pentru a obține main.exe
+>cl main.obj intro.lib
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 14.00.50727.42 for 80x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+ 
+Microsoft (R) Incremental Linker Version 8.00.50727.42
+Copyright (C) Microsoft Corporation.  All rights reserved.
+ 
+/out:main.exe
+main.obj
+intro.lib
+```
+
+# Windows: Crearea unei biblioteci dinamice:
+Simboluri:
+* __declspec(dllimport), este folosit pentru a importa o funcție dintr-o bibliotecă. 
+* __declspec(dllexport), este folosit pentru a exporta o funcție dintr-o bibliotecă.
+
+Header example:
+```
+    #ifndef FUNS_H
+    #define FUNS_H   1
+     
+    #ifdef DLL_IMPORTS
+    #define DLL_DECLSPEC __declspec(dllimport)
+    #else
+    #define DLL_DECLSPEC __declspec(dllexport)
+    #endif
+     
+    DLL_DECLSPEC void f1 (void);
+    DLL_DECLSPEC void f2 (void);
+     
+    #endif
+```
+
+Astfel, fisierele care vor exporta functii in DLL nu vor declara DLL_IMPORTS iar cele care le vor importa, vor declara:
+```
+#define DLL_IMPORTS
+```
+Procesul de compilare:
+```
+>cl /LD f1.obj f2.obj
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 14.00.50727.42 for 80x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+ 
+Microsoft (R) Incremental Linker Version 8.00.50727.42
+Copyright (C) Microsoft Corporation.  All rights reserved.
+ 
+/out:f1.dll
+/dll
+/implib:f1.lib
+f1.obj
+f2.obj
+   Creating library f1.lib and object f1.exp
+ 
+>cl main.obj f1.lib
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 14.00.50727.42 for 80x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+ 
+Microsoft (R) Incremental Linker Version 8.00.50727.42
+Copyright (C) Microsoft Corporation.  All rights reserved.
+ 
+/out:main.exe
+main.obj
+f1.lib
+```
+
+Alternativ, biblioteca poate fi obtinuta cu ajutorul comenzii link:
+```
+>link /nologo /dll /out:intro.dll /implib:intro.lib f1.obj f2.obj
+  Creating library intro.lib and object intro.exp
+ 
+>link /nologo /out:main.exe main.obj intro.lib
+ 
+>main.exe
+Current file name is f1.c
+Current line 6 in file f2.c
+```
