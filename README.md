@@ -66,3 +66,33 @@ so@spook$ ./main
 ./main: error while loading shared libraries: libintro_shared.so:
      cannot open shared object  file: No such file or directory
 ```
+
+## Windows:
+```
+cl hello.c
+cl /?		/* list of options */
+link /?	/* list of options */
+```
+# Optiuni:
+
+* /Wall - activeaz? toate warning-urile
+* /LIBPATH:<dir> - aceast? op?iune indic? linker-ului s? caute ?i în directorul dir bibliotecile pe care trebuie s? le foloseasc? programul; op?iunea se folose?te dup? /link
+* /I<dir> - caut? ?i în acest director fi?ierele incluse prin directiva include
+* /c - se va face numai compilarea, adic? se va omite etapa de link-editare.
+* /D<define_symbol> - definirea unui macro de la compilare
+
+# Op?iuni privind optimizarea codului:
+
+*    /O1 minimizeaz? spa?iul ocupat
+*    /O2 maximizeaz? viteza
+*    /Os favorizeaz? spa?iul ocupat
+*    /Ot favorizeaz? viteza
+*    /Od f?r? optimiz?ri (implicit)
+*    /Og activeaz? optimiz?rile globale
+
+#  Setarea numelui pentru diferite fi?iere de ie?ire:
+
+*    /Fo<file> nume fi?ier obiect
+*    /Fa<file> nume fi?ier în cod de asamblare
+*    /Fp<file> nume fi?ier header precompilat
+*    /Fe<file> nume fi?ier executabil
