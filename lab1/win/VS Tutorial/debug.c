@@ -1,9 +1,9 @@
 #include <windows.h>
 #include <stdio.h>
 
-int *bug;
+int bug;
 
-void f(int a, int b)
+int f(int a, int b)
 {
 	int c;
 
@@ -16,7 +16,7 @@ int main(void)
 {
 	printf("Hello SO\n");
 
-	*bug = f(1, 2);
+	bug = f(1, 2);
 
 	printf("bug = %d\n", bug);
 
