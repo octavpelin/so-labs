@@ -50,17 +50,26 @@ static void do_redirect(int filedes, const char *filename)
 	int rc;
 	int fd;
 
-	/* TODO 3 - Redirect filedes into fd representing filename */
+	/* TODO - Redirect filedes into fd representing filename */
+	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	DIE(fd < 0, "open");
+
+	rc = dup2(fd, filedes);
+	DIE(rc < 0, "dup2");
+
+	close(fd);
 }
 
 static void set_var(const char *name, const char *value)
 {
-	/* TODO 2 - Set the environment variable */
+	/* TODO - Set the environment variable */
+	setenv(name, value, 1);
 }
 
 static char *expand(const char *name)
 {
-	/* TODO 2 - Return the value of environment variables */
+	/* TODO - Return the value of environment variables */
+	return getenv(name);
 }
 
 /*
@@ -71,25 +80,36 @@ static void simple_cmd(char **args)
 	pid_t pid, wait_ret;
 	int status;
 
-	/* TODO 1 - Create a process to execute the command */
+	/* TODO - Create a process to execute the command */
+	pid = fork();
 
 	switch (pid) {
 	case -1:
-		/* TODO 1 - error */
+		/* error */
+		perror("fork");
+		exit(EXIT_FAILURE);
 
 		break;
 	case 0:
-		/* redirect standard output if needed */
+		/* TODO - redirect standard output if needed */
 		if (stdout_file != NULL)
 			do_redirect(STDOUT_FILENO, stdout_file);
 
-		/* TODO 1 - child process */
+		/* TODO - child process */
+		execvp(args[0], (char* const *) args);
 
-		break;
+		fprintf(stderr, "Execution failed for '%s'\n", args[0]);
+		fflush(stdout);
+
+		exit(EXIT_FAILURE);
 	default:
-		/* TODO 1 -  parent process */
-
-		break;
+		/* TODO - parent process */
+		wait_ret = waitpid(pid, &status, 0);
+		DIE(wait_ret < 0, "waitpid");
+		if(WIFEXITED(status))
+			printf("Child process (pid %d) terminated normally, "
+				"with exit code %d\n",
+				pid, WEXITSTATUS(status));
 	}
 
 
