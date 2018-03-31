@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="lab03-win">
+</Property><Property Name="Solution File" Value="C:\cygwin\home\Student\so-labs\lab3_remake\win\lab03-win.sln">
+</Property><Property Name="Date" Value="Wednesday, March 28, 2018">
+</Property><Property Name="Time" Value="12:33 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="lab03-win.sln" Description="File successfully backed up as C:\cygwin\home\Student\so-labs\lab3_remake\win\lab03-win.sln.old">
+</Event><Event ErrorLevel="0" Project="1-bomb" Source="1-bomb\1-bomb.vcproj" Description="Converting project file 'C:\cygwin\home\Student\so-labs\lab3_remake\win\1-bomb\1-bomb.vcproj'.">
+</Event><Event ErrorLevel="1" Project="1-bomb" Source="1-bomb\1-bomb.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="1-bomb" Source="1-bomb\1-bomb.vcproj" Description="Done converting to new project file 'C:\cygwin\home\Student\so-labs\lab3_remake\win\1-bomb\1-bomb.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="1-bomb" Source="1-bomb\1-bomb.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="2-tiny" Source="2-tiny\2-tiny.vcproj" Description="Converting project file 'C:\cygwin\home\Student\so-labs\lab3_remake\win\2-tiny\2-tiny.vcproj'.">
+</Event><Event ErrorLevel="1" Project="2-tiny" Source="2-tiny\2-tiny.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="2-tiny" Source="2-tiny\2-tiny.vcproj" Description="Done converting to new project file 'C:\cygwin\home\Student\so-labs\lab3_remake\win\2-tiny\2-tiny.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="2-tiny" Source="2-tiny\2-tiny.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="3-fifo-server" Source="3-fifo\3-fifo-server.vcproj" Description="Converting project file 'C:\cygwin\home\Student\so-labs\lab3_remake\win\3-fifo\3-fifo-server.vcproj'.">
+</Event><Event ErrorLevel="1" Project="3-fifo-server" Source="3-fifo\3-fifo-server.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="3-fifo-server" Source="3-fifo\3-fifo-server.vcproj" Description="Done converting to new project file 'C:\cygwin\home\Student\so-labs\lab3_remake\win\3-fifo\3-fifo-server.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="3-fifo-server" Source="3-fifo\3-fifo-server.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="3-fifo-client" Source="3-fifo\3-fifo-client.vcproj" Description="Converting project file 'C:\cygwin\home\Student\so-labs\lab3_remake\win\3-fifo\3-fifo-client.vcproj'.">
+</Event><Event ErrorLevel="1" Project="3-fifo-client" Source="3-fifo\3-fifo-client.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="3-fifo-client" Source="3-fifo\3-fifo-client.vcproj" Description="Done converting to new project file 'C:\cygwin\home\Student\so-labs\lab3_remake\win\3-fifo\3-fifo-client.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="3-fifo-client" Source="3-fifo\3-fifo-client.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="lab03-win.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="lab03-win.sln" Description="Converted">
+</Event></UpgradeLog>

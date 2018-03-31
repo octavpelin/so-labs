@@ -52,20 +52,28 @@ static VOID RedirectHandle(STARTUPINFO *psi, HANDLE hFile, INT opt)
 	if (hFile == INVALID_HANDLE_VALUE)
 		return;
 
-	/* TODO 1 - set handles from psi to
+	/* TODO - set handles from psi to
 	 * current STDIN,STDOUT, STDERR handles
 	 */
+	ZeroMemory(psi, sizeof(*psi));
+	psi->cb = sizeof(*psi);
 
-	/* TODO 1 - Redirect one of STDIN, STDOUT, STDERR to hFile */
+	psi->hStdInput = GetStdHandle(STD_INPUT_HANDLE);
+	psi->hStdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+	psi->hStdError = GetStdHandle(STD_ERROR_HANDLE);
+
+	psi->dwFlags |= STARTF_USESTDHANDLES;
+
+	/* TODO - Redirect one of STDIN, STDOUT, STDERR to hFile */
 	switch (opt) {
 	case STD_INPUT_HANDLE:
-		/* TODO 1 */
+		psi->hStdInput = hFile;
 		break;
 	case STD_OUTPUT_HANDLE:
-		/* TODO 1 */
+		psi->hStdOutput = hFile;
 		break;
 	case STD_ERROR_HANDLE:
-		/* TODO 1 */
+		psi->hStdError = hFile;
 		break;
 	}
 }
@@ -146,20 +154,67 @@ static VOID PipeCommands(PCHAR command1, PCHAR command2)
 	BOOL bRet;
 
 	/* TODO 2 - Init security attributes and process info */
+	ZeroMemory(&sa, sizeof(sa));
+	sa.bInheritHandle = TRUE;
+
+	ZeroMemory(&pi1, sizeof(pi1));
+	ZeroMemory(&pi2, sizeof(pi2));
 
 	/* TODO 2 - Create pipe */
+	bRet = CreatePipe(&hRead, &hWrite, &sa, 0);
+	DIE(bRet == FALSE, "CreatePipe");
 
 	/*
 	 * TODO 2 - Launch command1 with stdout redirected using CreateProcess
 	 *        - This child process should write to pipe
 	 */
+	RedirectHandle(&si1, hWrite, STD_OUTPUT_HANDLE);
+
+	bRet = CreateProcess(
+		NULL,
+		command1,
+		NULL,
+		NULL,
+		TRUE,
+		0,
+		NULL,
+		NULL,
+		&si1,
+		&pi1);
+	DIE(bRet == FALSE, "Create Process1");
+
+	CloseHandle(hWrite);
 
 	/*
 	 * TODO 2 - Launch command2 with stdin redirected using CreateProcess
 	 *        - This child process should read from the pipe
 	 */
+	RedirectHandle(&si2, hRead, STD_INPUT_HANDLE);
+
+	bRet = CreateProcess(
+		NULL,
+		command2,
+		NULL,
+		NULL,
+		TRUE,
+		0,
+		NULL,
+		NULL,
+		&si2,
+		&pi2);
+	DIE(bRet == FALSE, "CreateProcess2");
+	CloseHandle(hRead);
 
 	/* TODO 2 - Wait for processes to finish */
+	dwRet = WaitForSingleObject(pi1.hProcess, INFINITE);
+	DIE(dwRet == WAIT_FAILED, "WaitForSingleObject1");
+
+	CloseProcess(&pi1);
+
+	dwRet = WaitForSingleObject(pi2.hProcess, INFINITE);
+	DIE(dwRet == WAIT_FAILED, "WaitForSingleObject2");
+
+	CloseProcess(&pi2);
 }
 
 int main(int argc, char **argv)
